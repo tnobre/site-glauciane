@@ -1,6 +1,6 @@
 {
   "titulo_pagina": "Contato | Glauciane Nobre Advocacia Empresarial",
-  "descricao": "Agende uma conversa com a advogada empresarial Glauciane Nobre. Atendimento para empresas de todos os portes.",
+  "descricao": "Agende uma conversa com a advogada Glauciane Nobre. Atendimento para empresas de todos os portes.",
   "cabecalho": {
     "eyebrow": "Contato",
     "titulo": "Vamos conversar sobre o seu caso",
@@ -8,12 +8,20 @@
   },
   "mensagem_sucesso": "Mensagem enviada. Obrigada pelo contato — retornarei em breve.",
   "mensagem_erro": "Não consegui enviar sua mensagem. Tente novamente ou fale comigo pelo WhatsApp.",
+  "atendimento": "Atendimento presencial e online",
+  "botao_whatsapp": "Chamar no WhatsApp",
   "formulario": {
     "rotulo_tipo": "Você é",
     "opcao_vazia": "Selecione uma opção",
     "opcoes_tipo": [
-      { "valor": "pessoa-fisica", "texto": "Pessoa física" },
-      { "valor": "empresa", "texto": "Empresa" }
+      {
+        "valor": "pessoa-fisica",
+        "texto": "Pessoa física"
+      },
+      {
+        "valor": "empresa",
+        "texto": "Empresa"
+      }
     ],
     "erro_tipo": "Selecione uma opção.",
     "rotulo_nome": "Nome completo",
@@ -26,9 +34,7 @@
     "erro_mensagem": "Conte um pouco sobre o que precisa.",
     "botao_enviar": "Enviar mensagem"
   },
-  "atendimento": "Atendimento presencial e online",
-  "botao_whatsapp": "Chamar no WhatsApp",
-  "aviso_privacidade_antes": "Ao enviar seus dados, você concorda com o uso deles apenas para retorno de contato, conforme nossa ",
+  "aviso_privacidade_antes": "Ao enviar seus dados, você concorda com o uso deles apenas para retorno de contato, conforme nossa",
   "aviso_privacidade_link": "Política de Privacidade",
   "aviso_privacidade_depois": "."
 }
