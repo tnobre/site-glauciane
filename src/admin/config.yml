@@ -4,12 +4,11 @@
 # Cada alteração feita aqui vira um commit no GitHub e o site é
 # republicado automaticamente pela Netlify em ~1 minuto.
 #
-# ATENÇÃO: preencher `repo` com o repositório real antes de publicar.
 # ============================================================
 
 backend:
   name: github
-  repo: USUARIO/REPOSITORIO # <-- TROCAR pelo repositório no GitHub
+  repo: tnobre/site-glauciane
   branch: main
   # Usa o provedor OAuth da própria Netlify, evitando manter um
   # servidor de autenticação. Configurado em:
