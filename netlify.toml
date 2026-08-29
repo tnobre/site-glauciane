@@ -1,0 +1,25 @@
+# ============================================================
+# Configuração de publicação na Netlify.
+# ============================================================
+
+[build]
+  command = "npm run build"
+  publish = "_site"
+
+[build.environment]
+  # O Node 18 saiu de suporte; o build usa a versão LTS atual.
+  NODE_VERSION = "22"
+
+# O painel de edição não deve aparecer em buscadores.
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+# Cabeçalhos de segurança básicos.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"

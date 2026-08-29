@@ -1,0 +1,75 @@
+---
+layout: base.njk
+permalink: /reforma-tributaria.html
+pagina: reforma
+---
+    <section class="page-header">
+      <div class="container">
+        <span class="eyebrow">{{ reforma.cabecalho.eyebrow }}</span>
+        <h1>{{ reforma.cabecalho.titulo }}</h1>
+        <p class="lede">{{ reforma.cabecalho.lede }}</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">{{ reforma.cronograma.eyebrow }}</span>
+          <h2>{{ reforma.cronograma.titulo }}</h2>
+        </div>
+        <div class="reform-ticker" style="max-width: 640px;">
+          <div class="reform-ticker-track">
+            {%- for marco in reforma.cronograma.marcos %}
+            <div class="reform-ticker-step">
+              <span class="year">{{ marco.ano }}</span>
+              <span class="label">{{ marco.texto }}</span>
+            </div>
+            {%- endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">{{ reforma.pontos_de_atencao.eyebrow }}</span>
+          <h2>{{ reforma.pontos_de_atencao.titulo }}</h2>
+        </div>
+        <div class="grid grid-3">
+          {%- for card in reforma.pontos_de_atencao.cards %}
+          <div class="card">
+            <h3>{{ card.titulo }}</h3>
+            <p>{{ card.texto }}</p>
+          </div>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">{{ reforma.preparacao.eyebrow }}</span>
+          <h2>{{ reforma.preparacao.titulo }}</h2>
+        </div>
+        <div class="grid grid-3">
+          {%- for card in reforma.preparacao.cards %}
+          <div class="card">
+            <h3>{{ card.titulo }}</h3>
+            <p>{{ card.texto }}</p>
+          </div>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container">
+        <h2>{{ reforma.cta.titulo }}</h2>
+        <p>{{ reforma.cta.texto }}</p>
+        <div class="hero-actions" style="justify-content: center; margin-top: var(--space-3);">
+          <a href="{{ reforma.cta.botao.url }}" class="btn btn-primary" style="background:#fff; color: var(--color-ink);">{{ reforma.cta.botao.texto }}</a>
+        </div>
+      </div>
+    </section>

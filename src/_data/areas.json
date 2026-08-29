@@ -1,0 +1,92 @@
+{
+  "titulo_pagina": "Áreas de atuação | Glauciane Nobre Advocacia Empresarial",
+  "descricao": "Contratos empresariais, franchising, contencioso cível e tributário, tecnologia, energia e Reforma Tributária.",
+  "cabecalho": {
+    "eyebrow": "Áreas de atuação",
+    "titulo": "Como posso ajudar",
+    "lede": "Assessoria jurídica empresarial completa, com um diferencial técnico em Reforma Tributária."
+  },
+  "cards": [
+    {
+      "icone": "predio",
+      "titulo": "Contratos empresariais",
+      "texto": "Estruturação, revisão e negociação de contratos complexos, nacionais e internacionais, incluindo NDAs, acordos de fornecimento e parcerias."
+    },
+    {
+      "icone": "loja",
+      "titulo": "Franchising",
+      "texto": "Estruturação de modelos de franquia, contratos de franqueado e condução de encerramentos e distratos com segurança jurídica."
+    },
+    {
+      "icone": "documento",
+      "titulo": "Contencioso cível e tributário",
+      "texto": "Gestão de disputas administrativas e judiciais, com estratégia processual orientada a resultado e redução de risco."
+    },
+    {
+      "icone": "balanca",
+      "titulo": "Reforma tributária",
+      "texto": "Diagnóstico dos impactos do IBS e CBS na sua operação, com plano de adequação por fase da transição (2026–2033)."
+    },
+    {
+      "icone": "calendario",
+      "titulo": "Tecnologia e telecomunicações",
+      "texto": "Assessoria regulatória e contratual para empresas do setor, com experiência prévia em companhias globais de tecnologia e conectividade."
+    },
+    {
+      "icone": "raio",
+      "titulo": "Energia",
+      "texto": "Suporte jurídico a empresas do setor energético, da estruturação contratual à adequação regulatória."
+    }
+  ],
+  "detalhe": {
+    "mostrar": true,
+    "eyebrow": "Detalhamento",
+    "titulo": "Áreas em detalhe",
+    "blocos": [
+      {
+        "titulo": "Direito Tributário",
+        "intro": "Atuação consultiva e contenciosa, desenvolvida de forma integrada às demais áreas do Direito, com foco na identificação de soluções personalizadas para pessoas físicas e jurídicas.",
+        "itens": [
+          "Consultoria tributária, com análise da legislação, pareceres e respostas a consultas específicas",
+          "Planejamento tributário estratégico e avaliação de estruturas para maior eficiência fiscal",
+          "Acompanhamento de fiscalizações perante órgãos federais, estaduais e municipais",
+          "Contencioso administrativo tributário: defesas, impugnações, recursos e autos de infração",
+          "Contencioso judicial tributário, incluindo execuções fiscais e ações de cobrança",
+          "Transação tributária e regularização de débitos",
+          "Auditoria e due diligence tributária, com dimensionamento de riscos fiscais",
+          "Revisão de procedimentos fiscais e de modelos tributários aplicados a operações específicas"
+        ]
+      },
+      {
+        "titulo": "Direito Societário",
+        "intro": "Estruturação, organização e desenvolvimento de empresas, considerando as particularidades de cada negócio e os interesses de sócios, acionistas e investidores.",
+        "itens": [
+          "Constituição e estruturação societária, com definição do modelo mais adequado ao negócio",
+          "Elaboração e revisão de contratos sociais, estatutos, atas e acordos de sócios ou acionistas",
+          "Governança corporativa: conselhos, regimentos internos e políticas societárias",
+          "Reorganizações societárias — incorporações, cisões, fusões e reestruturações",
+          "Negociação entre sócios e investidores, incluindo memorandos e contratos de investimento",
+          "Prevenção e resolução de conflitos societários, judiciais, arbitrais ou extrajudiciais"
+        ]
+      },
+      {
+        "titulo": "Contratos Empresariais",
+        "intro": "Todas as etapas da relação contratual — estruturação do negócio, negociação, formalização, execução e revisão dos instrumentos, com clareza, equilíbrio e segurança jurídica.",
+        "itens": [
+          "Estruturação e elaboração de contratos adequados aos objetivos de cada negócio",
+          "Negociação e revisão contratual, com análise de condições comerciais e riscos",
+          "Gestão de riscos contratuais e definição de mecanismos de proteção",
+          "Adequação de contratos a estruturas inovadoras e novos formatos de contratação",
+          "Adaptação e revisão de contratos internacionais",
+          "Atuação integrada às áreas comercial, financeira e operacional",
+          "Acompanhamento da execução contratual, renegociações e alterações"
+        ]
+      }
+    ]
+  },
+  "cta": {
+    "titulo": "Não sabe qual área se aplica ao seu caso?",
+    "texto": "Me conte a sua situação e eu indico o melhor caminho.",
+    "botao": { "texto": "Fale comigo", "url": "contato.html" }
+  }
+}

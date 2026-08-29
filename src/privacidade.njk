@@ -1,0 +1,26 @@
+---
+layout: base.njk
+permalink: /privacidade.html
+pagina: privacidade
+rodape_simples: true
+---
+    <section class="page-header">
+      <div class="container">
+        <span class="eyebrow">{{ privacidade.cabecalho.eyebrow }}</span>
+        <h1>{{ privacidade.cabecalho.titulo }}</h1>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container" style="max-width: 72ch;">
+        {%- if privacidade.aviso_inicial %}
+        <p>{{ privacidade.aviso_inicial }}</p>
+        {%- endif %}
+        {%- for secao in privacidade.secoes %}
+        <h2>{{ secao.titulo }}</h2>
+        {%- for paragrafo in secao.paragrafos %}
+        <p>{{ paragrafo }}</p>
+        {%- endfor %}
+        {%- endfor %}
+      </div>
+    </section>

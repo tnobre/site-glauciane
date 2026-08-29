@@ -1,0 +1,65 @@
+---
+layout: base.njk
+permalink: /sobre.html
+pagina: sobre
+---
+    <section class="page-header">
+      <div class="container">
+        <span class="eyebrow">{{ sobre.cabecalho.eyebrow }}</span>
+        <h1>{{ sobre.cabecalho.titulo }}</h1>
+        <p class="lede">{{ sobre.cabecalho.lede }}</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container about-grid">
+        <div>
+          <img class="about-photo" src="{{ sobre.foto }}" alt="{{ sobre.foto_alt }}" />
+          <ul class="credentials">
+            {%- for credencial in sobre.credenciais %}
+            <li>→ {{ credencial }}</li>
+            {%- endfor %}
+          </ul>
+        </div>
+        <div>
+          {%- for bloco in sobre.blocos %}
+          <h2>{{ bloco.titulo }}</h2>
+          {%- for paragrafo in bloco.paragrafos %}
+          <p>{{ paragrafo }}</p>
+          {%- endfor %}
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+{%- if sobre.perfil.mostrar %}
+
+    <!-- ============================================================
+         Texto enviado pela Glauciane em 29/08/2026, mantido como
+         seção separada da "Trajetória" acima para que ela possa
+         decidir depois o que fundir ou remover.
+         ============================================================ -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">{{ sobre.perfil.eyebrow }}</span>
+          <h2>{{ sobre.perfil.titulo }}</h2>
+        </div>
+        <div style="max-width: 70ch;">
+          {%- for paragrafo in sobre.perfil.paragrafos %}
+          <p>{{ paragrafo }}</p>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+{%- endif %}
+
+    <section class="cta-band">
+      <div class="container">
+        <h2>{{ sobre.cta.titulo }}</h2>
+        <p>{{ sobre.cta.texto }}</p>
+        <div class="hero-actions" style="justify-content: center; margin-top: var(--space-3);">
+          <a href="{{ sobre.cta.botao.url }}" class="btn btn-primary" style="background:#fff; color: var(--color-ink);">{{ sobre.cta.botao.texto }}</a>
+        </div>
+      </div>
+    </section>

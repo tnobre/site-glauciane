@@ -1,0 +1,14 @@
+{
+  "name": "site-glauciane-nobre",
+  "version": "1.0.0",
+  "description": "Site institucional — Glauciane Nobre Advocacia Empresarial",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "node -e \"import('node:fs').then(fs=>fs.rmSync('_site',{recursive:true,force:true}))\" && eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

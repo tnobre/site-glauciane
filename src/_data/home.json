@@ -1,0 +1,104 @@
+{
+  "titulo_pagina": "Glauciane Nobre | Advocacia Empresarial e Reforma Tributária",
+  "descricao": "Assessoria jurídica empresarial em contratos, contencioso e estruturação de negócios, com diferencial técnico em Reforma Tributária.",
+  "hero": {
+    "eyebrow": "Direito empresarial · Consultoria estratégica",
+    "titulo": "Assessoria jurídica estratégica para empresas em transformação",
+    "lede": "Contratos, contencioso e estruturação de negócios com um diferencial: preparo técnico para os impactos da Reforma Tributária no seu setor.",
+    "botao_primario": {
+      "texto": "Agendar uma conversa",
+      "url": "contato.html"
+    },
+    "botao_secundario": {
+      "texto": "Entenda a reforma",
+      "url": "reforma-tributaria.html"
+    }
+  },
+  "linha_do_tempo": {
+    "titulo": "Linha do tempo da transição",
+    "marcos": [
+      {
+        "ano": "2026",
+        "texto": "Fase de testes do IBS e CBS, sem cobrança efetiva"
+      },
+      {
+        "ano": "2027",
+        "texto": "Cobrança inicia e PIS/Cofins são extintos"
+      },
+      {
+        "ano": "2029–2032",
+        "texto": "Transição gradual do ICMS e ISS para o IBS"
+      },
+      {
+        "ano": "2033",
+        "texto": "Novo sistema plenamente em vigor"
+      }
+    ]
+  },
+  "sobre": {
+    "eyebrow": "Sobre",
+    "titulo": "Advocacia empresarial com raiz em direito tributário",
+    "foto": "assets/img/glauciane-foto.png",
+    "foto_alt": "Glauciane Nobre, advogada empresarial",
+    "paragrafos": [
+      "Glauciane construiu a carreira como advogada in-house em empresas de tecnologia, telecom e energia, liderando contratos, contencioso e a reestruturação jurídica de negócios complexos — incluindo o encerramento de mais de 200 unidades franqueadas de uma rede nacional.",
+      "Com especialização em Direito Tributário, ela une essa vivência de negócio real à leitura técnica da Reforma Tributária, ajudando empresas a entender o que muda para o seu caso específico."
+    ],
+    "botao": {
+      "texto": "Conheça a trajetória completa",
+      "url": "sobre.html"
+    }
+  },
+  "areas": {
+    "eyebrow": "Áreas de atuação",
+    "titulo": "Como posso ajudar",
+    "cards": [
+      {
+        "icone": "predio",
+        "titulo": "Contratos empresariais e franchising",
+        "texto": "Estruturação, negociação e revisão de contratos complexos, nacionais e internacionais."
+      },
+      {
+        "icone": "balanca",
+        "titulo": "Reforma tributária",
+        "texto": "Diagnóstico dos impactos do IBS e CBS no seu negócio e plano de adequação por fase da transição."
+      },
+      {
+        "icone": "documento",
+        "titulo": "Contencioso cível e tributário",
+        "texto": "Gestão de disputas administrativas e judiciais, com estratégia processual orientada a resultado."
+      }
+    ],
+    "botao": {
+      "texto": "Ver todas as áreas",
+      "url": "areas-de-atuacao.html"
+    }
+  },
+  "reforma_destaque": {
+    "eyebrow": "Diferencial técnico",
+    "titulo": "A Reforma Tributária muda regras que sua empresa usa todos os dias",
+    "texto": "Apuração de créditos, precificação, contratos e obrigações acessórias vão mudar entre 2026 e 2033. Quanto antes o diagnóstico for feito, menor o risco de surpresas.",
+    "botao": {
+      "texto": "Ver o guia completo",
+      "url": "reforma-tributaria.html"
+    },
+    "lista_titulo": "Principais pontos de atenção",
+    "itens": [
+      "Não cumulatividade plena de créditos",
+      "Split payment na liquidação financeira",
+      "Novos regimes específicos por setor"
+    ]
+  },
+  "blog": {
+    "eyebrow": "Conteúdo",
+    "titulo": "Últimos artigos"
+  },
+  "cta": {
+    "titulo": "Vamos entender o impacto no seu caso?",
+    "texto": "Atendimento para empresas de todos os portes, presencial ou online.",
+    "botao": {
+      "texto": "Agendar uma conversa",
+      "url": "contato.html"
+    }
+  }
+}

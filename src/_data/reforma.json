@@ -1,0 +1,72 @@
+{
+  "titulo_pagina": "Reforma Tributária | Glauciane Nobre Advocacia Empresarial",
+  "descricao": "Guia completo sobre a Reforma Tributária: IBS, CBS, cronograma de transição e impactos por setor.",
+  "cabecalho": {
+    "eyebrow": "Reforma tributária",
+    "titulo": "O que muda, quando muda, e o que fazer agora",
+    "lede": "Um guia direto sobre a maior mudança tributária das últimas décadas — e como ela afeta a operação da sua empresa."
+  },
+  "cronograma": {
+    "eyebrow": "Cronograma",
+    "titulo": "Linha do tempo da transição",
+    "marcos": [
+      {
+        "ano": "2026",
+        "texto": "Fase de testes: IBS e CBS são cobrados com alíquota simbólica, sem impacto real na carga tributária."
+      },
+      {
+        "ano": "2027",
+        "texto": "CBS entra em vigor de fato. PIS e Cofins são extintos. IPI é reduzido a zero para a maioria dos produtos."
+      },
+      {
+        "ano": "2029–2032",
+        "texto": "Transição gradual: ICMS e ISS diminuem progressivamente enquanto o IBS assume a arrecadação."
+      },
+      {
+        "ano": "2033",
+        "texto": "ICMS e ISS são extintos. Novo sistema de IBS e CBS passa a vigorar plenamente."
+      }
+    ]
+  },
+  "pontos_de_atencao": {
+    "eyebrow": "O que muda",
+    "titulo": "Pontos de atenção para empresas",
+    "cards": [
+      {
+        "titulo": "Não cumulatividade plena",
+        "texto": "Créditos tributários passam a ser aproveitados de forma mais ampla, mudando a lógica de precificação e de estruturação de compras."
+      },
+      {
+        "titulo": "Split payment",
+        "texto": "Parte do tributo pode ser recolhida diretamente na liquidação financeira da venda, alterando o fluxo de caixa das empresas."
+      },
+      {
+        "titulo": "Regimes específicos por setor",
+        "texto": "Setores como saúde, educação, agropecuária e serviços financeiros têm regras diferenciadas que precisam ser mapeadas caso a caso."
+      }
+    ]
+  },
+  "preparacao": {
+    "eyebrow": "Passo a passo",
+    "titulo": "Como se preparar",
+    "cards": [
+      {
+        "titulo": "1. Diagnóstico",
+        "texto": "Mapeamento de como o IBS e a CBS afetam sua operação, seus contratos e sua margem."
+      },
+      {
+        "titulo": "2. Plano de adequação",
+        "texto": "Ajustes de contratos, precificação e obrigações acessórias, com prazos alinhados ao cronograma legal."
+      },
+      {
+        "titulo": "3. Acompanhamento",
+        "texto": "Revisões periódicas conforme a regulamentação da reforma avança — o texto final ainda está sendo detalhado por leis complementares."
+      }
+    ]
+  },
+  "cta": {
+    "titulo": "Quer entender o impacto específico no seu caso?",
+    "texto": "Cada setor e cada empresa é afetado de um jeito diferente. Vamos conversar sobre o seu.",
+    "botao": { "texto": "Agendar diagnóstico", "url": "contato.html" }
+  }
+}

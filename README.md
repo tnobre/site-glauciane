@@ -1,90 +1,101 @@
-# Site — Glauciane Advocacia Tributária (MVP)
+# Site — Glauciane Nobre Advocacia Empresarial
 
-## Como abrir
+Site estático gerado com [Eleventy](https://www.11ty.dev/), publicado na Netlify,
+com painel de edição para a Glauciane alterar os textos sem mexer em código.
 
-Duas formas:
+## Rodar na sua máquina
 
-1. **Rápido, só para visualizar**: dê duplo clique em `index.html`. Funciona, mas
-   alguns navegadores (Chrome) bloqueiam pequenos recursos ao abrir arquivos
-   direto do disco.
-2. **Recomendado**: rode um servidor local simples. Com Python já instalado:
-   ```
-   cd site
-   python3 -m http.server 8080
-   ```
-   Depois acesse `http://localhost:8080` no navegador. Isso evita qualquer
-   limitação de segurança do navegador para arquivos locais e já simula como o
-   site vai se comportar hospedado.
+```
+npm install
+npm start        # http://localhost:8080, recarrega ao salvar
+npm run build    # gera a pasta _site/
+```
+
+Requer Node 18+. O build da Netlify usa a versão fixada em `.nvmrc` (22).
 
 ## Estrutura
 
 ```
-site/
-├── index.html              Home
-├── sobre.html
-├── areas-de-atuacao.html
-├── reforma-tributaria.html  Hub de conteúdo sobre a reforma
-├── blog.html
-├── contato.html             Formulário + WhatsApp
-├── privacidade.html         Texto-modelo de política de privacidade (LGPD)
-├── css/style.css            Todos os estilos, com tokens no topo do arquivo
-├── js/main.js               Menu mobile, validação do formulário, ano do rodapé
-├── js/blog-data.js          Conteúdo dos posts do blog (ver nota abaixo)
-└── data/posts.json          Mesmo conteúdo em JSON, pronto para virar backend
+src/
+├── _data/                 CONTEÚDO — é o que o painel edita
+│   ├── site.json          telefone, e-mail, OAB, menus (vale para todas as páginas)
+│   ├── home.json          textos da página inicial
+│   ├── sobre.json         textos da página "Sobre"
+│   ├── areas.json         textos de "Áreas de atuação"
+│   ├── reforma.json       textos de "Reforma tributária"
+│   ├── blog.json          textos fixos da página de blog
+│   ├── contato.json       textos da página de contato
+│   ├── privacidade.json   textos da política de privacidade
+│   └── eleventyComputed.js liga cada página ao seu arquivo de conteúdo
+├── _includes/
+│   ├── base.njk           <head>, cabeçalho, menu e rodapé de todas as páginas
+│   └── icones.njk         SVGs dos cards, escolhidos por nome no painel
+├── posts/*.md             artigos do blog (um arquivo por artigo)
+├── admin/                 painel de edição (Sveltia CMS)
+├── *.njk                  as 7 páginas — só a estrutura, sem texto fixo
+├── css/  js/  assets/     copiados sem alteração para o site final
+
+design/                    arte-fonte da logo; NÃO vai para o site publicado
+comparar-conteudo.py       verifica que nenhum texto se perdeu
+comparar-estrutura.py      verifica que o HTML entregue não mudou de forma
 ```
 
-## Por que essas escolhas técnicas
+A regra: **texto fica em `_data/` ou em `posts/`; estrutura fica nos `.njk`.**
+Se um texto está escrito dentro de um `.njk`, a Glauciane não consegue editá-lo.
 
-**HTML/CSS/JS puro, sem build tool.** Para o tamanho atual do site (6 páginas),
-qualquer framework (React, Next.js, Vue) adicionaria complexidade sem benefício
-real — e exigiria que quem for editar o conteúdo soubesse rodar `npm install`,
-lidar com dependências, etc. HTML puro roda em qualquer lugar, para sempre, sem
-manutenção de dependências.
+## Como ela edita
 
-**CSS com variáveis (design tokens) no topo do `style.css`.** Cores, fontes,
-espaçamentos e raios de borda estão centralizados em `:root`. Isso significa
-que trocar a cor principal do site, por exemplo, é uma linha só — não uma
-busca por todo o CSS.
+Acessa `https://<site>/admin`, faz login com a conta do GitHub e edita em
+formulários com rótulos em português. Ao salvar, o Sveltia CMS grava um commit
+no repositório, a Netlify reconstrói e a alteração entra no ar em cerca de um
+minuto. Como cada edição é um commit, dá para desfazer qualquer mudança.
 
-**Header e rodapé duplicados em cada página.** É a única concessão consciente
-nesta versão: sem um servidor de templates, replicar o HTML do menu em cada
-arquivo é mais simples do que usar `fetch()` para montar a página (que, aliás,
-não funciona ao abrir arquivos direto do disco). Se o número de páginas
-crescer muito, vale migrar para uma ferramenta de templates (próxima seção).
+Fica fora do painel, por decisão de projeto: layout, CSS, ícones e a estrutura
+das páginas.
 
-**Blog com dados em JS, espelhados em JSON.** Hoje os posts vivem em
-`js/blog-data.js` como um array. O arquivo `data/posts.json` tem exatamente o
-mesmo conteúdo e formato — é o "molde" para quando o site for publicado num
-servidor de verdade, onde então dá para trocar `blog-data.js` por um simples
-`fetch('/data/posts.json')`.
+## Formulário de contato
 
-## O que provavelmente vai ser pedido no futuro (e como este projeto já se
-prepara para isso)
+Usa **Netlify Forms**: o atributo `data-netlify` em `src/contato.njk` faz a
+Netlify reconhecer o formulário no build e passar a receber os envios; o
+`js/main.js` valida os campos e faz o POST. Não há backend nem chave de API.
+Os envios aparecem no painel da Netlify e são enviados por e-mail. O campo-isca
+`bot-field` barra robôs sem precisar de captcha. O plano gratuito cobre 100
+envios por mês.
 
-| Pedido futuro | Caminho recomendado |
-|---|---|
-| "Quero adicionar posts sem mexer no código" | Migrar para um site estático com CMS: **Astro** ou **Eleventy (11ty)** + um CMS headless simples como **Decap CMS** ou **Sanity**. A estrutura de conteúdo em JSON já criada aqui migra quase direto. |
-| "Quero que o formulário realmente envie e-mail" | Plugar um serviço como **Formspree**, **Resend** ou **EmailJS** — só trocar o comentário indicado em `js/main.js` (`initContactForm`) por uma chamada `fetch` real. Não precisa reescrever o formulário. |
-| "Quero agendamento automático de consulta" | Embutir um widget do **Calendly** ou **Cal.com** na página de contato. |
-| "O site cresceu, ficou difícil de manter o menu em toda página" | Migrar para **Astro** (componentes reaproveitáveis, sem virar uma SPA pesada) ou, se quiser algo com mais tooling de front-end, **Next.js**. A estrutura de CSS com tokens e o conteúdo já escrito aqui aproveitam quase 100%. |
-| "Quero múltiplos idiomas" | Astro e Next.js têm suporte nativo a i18n; nesse ponto compensa migrar. |
-| "Quero medir de onde vêm os clientes" | Adicionar Google Analytics ou Plausible via tag no `<head>` — não exige mudança de arquitetura. |
+## Verificação
 
-Resumindo: para o volume de conteúdo de um MVP, HTML/CSS/JS puro é a escolha
-certa — rápido de carregar, fácil de hospedar em qualquer lugar (Netlify,
-Vercel, GitHub Pages, hospedagem compartilhada) e sem dependências para
-quebrar. O ponto de virada para um framework é quando o **conteúdo** (número de
-posts, páginas, idiomas) crescer o suficiente para que copiar/colar HTML vire
-dor de cabeça — e aí a estrutura de tokens e conteúdo já escrita aqui migra sem
-retrabalho.
+Os dois scripts comparam o site gerado com o commit `acbd9ba` — o site estático
+original, antes da migração:
 
-## Antes de publicar
+```
+npm run build
+python comparar-conteudo.py     # nenhum texto perdido ou alterado
+python comparar-estrutura.py    # HTML com a mesma estrutura e classes
+```
 
-- Substituir todos os campos entre colchetes `[ ]` (nome completo, OAB, e-mail,
-  telefone, formação, textos de "Sobre") pelos dados reais.
-- Trocar as fotos placeholder (blocos cinza) por fotos reais em `assets/img/`.
-- Revisar o texto de `privacidade.html` com apoio jurídico especializado em
-  LGPD antes de publicar.
-- Confirmar que toda a linguagem do site está alinhada ao Provimento 205/2021
-  da OAB sobre publicidade advocatícia (evitar termos como "desconto",
-  "promoção", garantias de resultado).
+As diferenças intencionais (posts que passaram a ser gerados no build, campos do
+Netlify Forms) estão listadas com justificativa no topo de cada script. Qualquer
+diferença fora dessa lista faz o script falhar — use-os depois de mexer nos
+templates.
+
+## Publicação
+
+Configurada em `netlify.toml`: build `npm run build`, pasta publicada `_site`.
+Todo commit na branch `main` republica o site.
+
+## Pendências conhecidas
+
+- **`src/admin/config.yml`** está com `repo: USUARIO/REPOSITORIO` — precisa
+  apontar para o repositório real antes do painel funcionar.
+- **Analytics** já está ligado no template, mas inativo: preencher
+  `analytics_token` em `site.json` com o código do Cloudflare Web Analytics.
+- **Política de privacidade** tem dois trechos-modelo entre colchetes que
+  precisam de revisão jurídica — mais relevante agora que o formulário
+  realmente coleta dados.
+- **Artigos do blog** não têm página individual. Os cards mostram título e
+  resumo, e o link "Ler artigo" ainda não leva a lugar nenhum. Os arquivos em
+  `src/posts/` já têm um campo de texto para o artigo completo; para publicar
+  as páginas, basta remover `permalink: false` de `src/posts/posts.json` e
+  criar o template do artigo.
+- **Publicidade advocatícia**: revisar a linguagem do site à luz do Provimento
+  205/2021 da OAB antes de divulgar.

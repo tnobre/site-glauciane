@@ -1,0 +1,124 @@
+---
+layout: base.njk
+permalink: /index.html
+pagina: home
+---
+{% from "icones.njk" import icone %}
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div>
+          <span class="eyebrow">{{ home.hero.eyebrow }}</span>
+          <h1>{{ home.hero.titulo }}</h1>
+          <p class="lede">{{ home.hero.lede }}</p>
+          <div class="hero-actions">
+            <a href="{{ home.hero.botao_primario.url }}" class="btn btn-primary">{{ home.hero.botao_primario.texto }}</a>
+            <a href="{{ home.hero.botao_secundario.url }}" class="btn btn-secondary">{{ home.hero.botao_secundario.texto }}</a>
+          </div>
+        </div>
+
+        <div class="reform-ticker" aria-label="Linha do tempo da transição da reforma tributária">
+          <p class="reform-ticker-title">{{ home.linha_do_tempo.titulo }}</p>
+          <div class="reform-ticker-track">
+            {%- for marco in home.linha_do_tempo.marcos %}
+            <div class="reform-ticker-step">
+              <span class="year">{{ marco.ano }}</span>
+              <span class="label">{{ marco.texto }}</span>
+            </div>
+            {%- endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE (resumo) -->
+    <section class="section section-alt">
+      <div class="container about-grid">
+        <img class="about-photo" src="{{ home.sobre.foto }}" alt="{{ home.sobre.foto_alt }}" />
+        <div>
+          <span class="eyebrow">{{ home.sobre.eyebrow }}</span>
+          <h2>{{ home.sobre.titulo }}</h2>
+          {%- for paragrafo in home.sobre.paragrafos %}
+          <p>{{ paragrafo }}</p>
+          {%- endfor %}
+          <a href="{{ home.sobre.botao.url }}" class="btn btn-secondary">{{ home.sobre.botao.texto }}</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ÁREAS DE ATUAÇÃO -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">{{ home.areas.eyebrow }}</span>
+          <h2>{{ home.areas.titulo }}</h2>
+        </div>
+        <div class="grid grid-3">
+          {%- for card in home.areas.cards %}
+          <div class="card">
+            <div class="card-icon" aria-hidden="true">
+              {{ icone(card.icone) }}
+            </div>
+            <h3>{{ card.titulo }}</h3>
+            <p>{{ card.texto }}</p>
+          </div>
+          {%- endfor %}
+        </div>
+        <p class="text-center" style="margin-top: var(--space-3);">
+          <a href="{{ home.areas.botao.url }}" class="btn btn-secondary">{{ home.areas.botao.texto }}</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- REFORMA TRIBUTÁRIA (destaque) -->
+    <section class="section">
+      <div class="container">
+        <div class="reform-highlight">
+          <div>
+            <span class="eyebrow" style="color: rgba(255,255,255,0.75);">{{ home.reforma_destaque.eyebrow }}</span>
+            <h2>{{ home.reforma_destaque.titulo }}</h2>
+            <p>{{ home.reforma_destaque.texto }}</p>
+            <a href="{{ home.reforma_destaque.botao.url }}" class="btn btn-primary">{{ home.reforma_destaque.botao.texto }}</a>
+          </div>
+          <div class="reform-ticker" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.25);">
+            <p class="reform-ticker-title" style="color: rgba(255,255,255,0.75);">{{ home.reforma_destaque.lista_titulo }}</p>
+            <ul style="display:flex; flex-direction:column; gap: 0.75rem;">
+              {%- for item in home.reforma_destaque.itens %}
+              <li style="color:#fff; font-size: var(--fs-small);">→ {{ item }}</li>
+              {%- endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG (preview) -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">{{ home.blog.eyebrow }}</span>
+          <h2>{{ home.blog.titulo }}</h2>
+        </div>
+        <div class="grid grid-3" id="blog-preview">
+          {%- for post in collections.posts.slice(0, 3) %}
+          <article class="card post-card">
+            <span class="date">{{ post.data.date | dataPtBr }}</span>
+            <h3>{{ post.data.title }}</h3>
+            <p>{{ post.data.excerpt }}</p>
+            <a class="read-more" href="blog.html">{{ blog.texto_ler_artigo }}</a>
+          </article>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="cta-band">
+      <div class="container">
+        <h2>{{ home.cta.titulo }}</h2>
+        <p>{{ home.cta.texto }}</p>
+        <div class="hero-actions" style="justify-content: center; margin-top: var(--space-3);">
+          <a href="{{ home.cta.botao.url }}" class="btn btn-primary" style="background:#fff; color: var(--color-ink);">{{ home.cta.botao.texto }}</a>
+        </div>
+      </div>
+    </section>

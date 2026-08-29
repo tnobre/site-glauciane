@@ -428,6 +428,18 @@ button { font-family: inherit; cursor: pointer; }
 }
 .form-success.is-visible { display: block; }
 
+/* Espelha a caixa de sucesso, para quando o envio falha. */
+.form-falha {
+  display: none;
+  background: #f7e9e6;
+  color: var(--color-danger);
+  padding: var(--space-2);
+  border-radius: var(--radius);
+  font-size: var(--fs-small);
+  margin-bottom: var(--space-2);
+}
+.form-falha.is-visible { display: block; }
+
 .contact-info { display: flex; flex-direction: column; gap: var(--space-2); }
 .contact-info .item { display: flex; gap: 0.75rem; align-items: flex-start; font-size: var(--fs-small); }
 .contact-info .icon { color: var(--color-reform); flex-shrink: 0; }

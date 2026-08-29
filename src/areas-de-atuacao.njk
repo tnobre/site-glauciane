@@ -1,0 +1,66 @@
+---
+layout: base.njk
+permalink: /areas-de-atuacao.html
+pagina: areas
+---
+{% from "icones.njk" import icone %}
+    <section class="page-header">
+      <div class="container">
+        <span class="eyebrow">{{ areas.cabecalho.eyebrow }}</span>
+        <h1>{{ areas.cabecalho.titulo }}</h1>
+        <p class="lede">{{ areas.cabecalho.lede }}</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid grid-3">
+          {%- for card in areas.cards %}
+          <div class="card">
+            <div class="card-icon" aria-hidden="true">
+              {{ icone(card.icone) }}
+            </div>
+            <h3>{{ card.titulo }}</h3>
+            <p>{{ card.texto }}</p>
+          </div>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+{%- if areas.detalhe.mostrar %}
+
+    <!-- ============================================================
+         Texto enviado pela Glauciane em 29/08/2026, acrescentado
+         abaixo dos cards-resumo sem alterá-los.
+         ============================================================ -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">{{ areas.detalhe.eyebrow }}</span>
+          <h2>{{ areas.detalhe.titulo }}</h2>
+        </div>
+        {%- for bloco in areas.detalhe.blocos %}
+        <div class="service-block">
+          <h3>{{ bloco.titulo }}</h3>
+          <p>{{ bloco.intro }}</p>
+          <ul class="service-list">
+            {%- for item in bloco.itens %}
+            <li>{{ item }}</li>
+            {%- endfor %}
+          </ul>
+        </div>
+        {%- endfor %}
+      </div>
+    </section>
+{%- endif %}
+
+    <section class="cta-band">
+      <div class="container">
+        <h2>{{ areas.cta.titulo }}</h2>
+        <p>{{ areas.cta.texto }}</p>
+        <div class="hero-actions" style="justify-content: center; margin-top: var(--space-3);">
+          <a href="{{ areas.cta.botao.url }}" class="btn btn-primary" style="background:#fff; color: var(--color-ink);">{{ areas.cta.botao.texto }}</a>
+        </div>
+      </div>
+    </section>

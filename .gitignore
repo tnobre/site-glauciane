@@ -10,3 +10,6 @@ _site/
 # Sistema
 Thumbs.db
 .DS_Store
+
+# Cache do Eleventy
+.cache/

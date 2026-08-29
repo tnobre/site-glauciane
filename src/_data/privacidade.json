@@ -1,0 +1,35 @@
+{
+  "titulo_pagina": "Política de Privacidade | Glauciane Nobre Advocacia Empresarial",
+  "descricao": "Como os dados enviados pelo formulário de contato deste site são coletados, utilizados e armazenados, conforme a Lei Geral de Proteção de Dados.",
+  "cabecalho": {
+    "eyebrow": "Legal",
+    "titulo": "Política de privacidade"
+  },
+  "aviso_inicial": "[Este é um texto-modelo. Recomenda-se validação por profissional especializado em LGPD antes da publicação.]",
+  "secoes": [
+    {
+      "titulo": "1. Dados coletados",
+      "paragrafos": [
+        "Coletamos os dados fornecidos voluntariamente através do formulário de contato deste site: nome, e-mail, telefone e o conteúdo da mensagem enviada."
+      ]
+    },
+    {
+      "titulo": "2. Finalidade",
+      "paragrafos": [
+        "Os dados são utilizados exclusivamente para retorno de contato referente à solicitação enviada, não sendo compartilhados com terceiros para fins comerciais."
+      ]
+    },
+    {
+      "titulo": "3. Armazenamento",
+      "paragrafos": [
+        "[Descrever aqui onde e por quanto tempo os dados ficam armazenados, conforme a solução técnica adotada.]"
+      ]
+    },
+    {
+      "titulo": "4. Direitos do titular",
+      "paragrafos": [
+        "Você pode solicitar a qualquer momento a confirmação, correção ou exclusão dos seus dados, conforme a Lei Geral de Proteção de Dados (Lei nº 13.709/2018), através do e-mail de contato informado no rodapé deste site."
+      ]
+    }
+  ]
+}

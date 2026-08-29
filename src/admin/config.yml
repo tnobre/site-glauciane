@@ -1,0 +1,458 @@
+# ============================================================
+# Painel de edição do site (Sveltia CMS).
+#
+# Cada alteração feita aqui vira um commit no GitHub e o site é
+# republicado automaticamente pela Netlify em ~1 minuto.
+#
+# ATENÇÃO: preencher `repo` com o repositório real antes de publicar.
+# ============================================================
+
+backend:
+  name: github
+  repo: USUARIO/REPOSITORIO # <-- TROCAR pelo repositório no GitHub
+  branch: main
+  # Usa o provedor OAuth da própria Netlify, evitando manter um
+  # servidor de autenticação. Configurado em:
+  # Netlify > Site settings > Access control > OAuth > Install provider (GitHub)
+  base_url: https://api.netlify.com
+
+# Onde as imagens enviadas pelo painel são gravadas...
+media_folder: src/assets/img
+# ...e como elas são referenciadas nas páginas (caminho relativo,
+# igual ao que os templates já usam).
+public_folder: assets/img
+
+locale: pt
+publish_mode: simple
+
+collections:
+  # ----------------------------------------------------------
+  # Textos das páginas
+  # ----------------------------------------------------------
+  - name: paginas
+    label: Páginas
+    files:
+      - name: site
+        label: Dados gerais do site
+        file: src/_data/site.json
+        description: Telefone, e-mail, OAB e menus. Vale para todas as páginas.
+        fields:
+          - { name: nome, label: Nome, widget: string }
+          - { name: oab, label: Inscrição na OAB, widget: string }
+          - { name: email, label: E-mail, widget: string }
+          - { name: telefone_exibicao, label: Telefone (como aparece no site), widget: string }
+          - {
+              name: telefone_link,
+              label: Telefone (só números, para o link de ligar),
+              widget: string,
+              hint: "Formato: +5511999999999",
+            }
+          - { name: whatsapp_url, label: Link do WhatsApp, widget: string }
+          - { name: descricao_rodape, label: Descrição no rodapé, widget: text }
+          - { name: logo_alt, label: Descrição da logo (acessibilidade), widget: string }
+          - {
+              name: analytics_token,
+              label: Código do Cloudflare Analytics,
+              widget: string,
+              required: false,
+              hint: Deixe vazio para não medir visitas.,
+            }
+          - name: menu
+            label: Menu do topo
+            widget: list
+            fields:
+              - { name: texto, label: Texto, widget: string }
+              - { name: url, label: Link, widget: string }
+              - { name: destaque, label: Botão destacado, widget: boolean, required: false, default: false }
+          - name: menu_rodape
+            label: Menu do rodapé
+            widget: list
+            fields:
+              - { name: texto, label: Texto, widget: string }
+              - { name: url, label: Link, widget: string }
+
+      - name: home
+        label: Página inicial
+        file: src/_data/home.json
+        fields:
+          - { name: titulo_pagina, label: Título na aba do navegador, widget: string }
+          - { name: descricao, label: Descrição para o Google, widget: text }
+          - name: hero
+            label: Topo da página
+            widget: object
+            fields:
+              - { name: eyebrow, label: Linha pequena acima do título, widget: string }
+              - { name: titulo, label: Título principal, widget: string }
+              - { name: lede, label: Texto de apresentação, widget: text }
+              - name: botao_primario
+                label: Botão principal
+                widget: object
+                fields:
+                  - { name: texto, label: Texto, widget: string }
+                  - { name: url, label: Link, widget: string }
+              - name: botao_secundario
+                label: Botão secundário
+                widget: object
+                fields:
+                  - { name: texto, label: Texto, widget: string }
+                  - { name: url, label: Link, widget: string }
+          - name: linha_do_tempo
+            label: Linha do tempo da reforma
+            widget: object
+            fields:
+              - { name: titulo, label: Título, widget: string }
+              - name: marcos
+                label: Marcos
+                widget: list
+                fields:
+                  - { name: ano, label: Ano, widget: string }
+                  - { name: texto, label: O que acontece, widget: text }
+          - name: sobre
+            label: Bloco "Sobre"
+            widget: object
+            fields:
+              - { name: eyebrow, label: Linha pequena, widget: string }
+              - { name: titulo, label: Título, widget: string }
+              - { name: foto, label: Foto, widget: image }
+              - { name: foto_alt, label: Descrição da foto (acessibilidade), widget: string }
+              - { name: paragrafos, label: Parágrafos, widget: list, field: { name: texto, label: Parágrafo, widget: text } }
+              - name: botao
+                label: Botão
+                widget: object
+                fields:
+                  - { name: texto, label: Texto, widget: string }
+                  - { name: url, label: Link, widget: string }
+          - name: areas
+            label: Bloco "Áreas de atuação"
+            widget: object
+            fields:
+              - { name: eyebrow, label: Linha pequena, widget: string }
+              - { name: titulo, label: Título, widget: string }
+              - name: cards
+                label: Cards
+                widget: list
+                fields:
+                  - {
+                      name: icone,
+                      label: Ícone,
+                      widget: select,
+                      options: [predio, loja, documento, balanca, calendario, raio],
+                    }
+                  - { name: titulo, label: Título, widget: string }
+                  - { name: texto, label: Descrição, widget: text }
+              - name: botao
+                label: Botão
+                widget: object
+                fields:
+                  - { name: texto, label: Texto, widget: string }
+                  - { name: url, label: Link, widget: string }
+          - name: reforma_destaque
+            label: Bloco de destaque da Reforma
+            widget: object
+            fields:
+              - { name: eyebrow, label: Linha pequena, widget: string }
+              - { name: titulo, label: Título, widget: string }
+              - { name: texto, label: Texto, widget: text }
+              - name: botao
+                label: Botão
+                widget: object
+                fields:
+                  - { name: texto, label: Texto, widget: string }
+                  - { name: url, label: Link, widget: string }
+              - { name: lista_titulo, label: Título da lista, widget: string }
+              - { name: itens, label: Itens, widget: list, field: { name: texto, label: Item, widget: string } }
+          - name: blog
+            label: Bloco "Últimos artigos"
+            widget: object
+            fields:
+              - { name: eyebrow, label: Linha pequena, widget: string }
+              - { name: titulo, label: Título, widget: string }
+          - name: cta
+            label: Chamada final
+            widget: object
+            fields:
+              - { name: titulo, label: Título, widget: string }
+              - { name: texto, label: Texto, widget: text }
+              - name: botao
+                label: Botão
+                widget: object
+                fields:
+                  - { name: texto, label: Texto, widget: string }
+                  - { name: url, label: Link, widget: string }
+
+      - name: sobre
+        label: Página "Sobre"
+        file: src/_data/sobre.json
+        fields:
+          - { name: titulo_pagina, label: Título na aba do navegador, widget: string }
+          - { name: descricao, label: Descrição para o Google, widget: text }
+          - name: cabecalho
+            label: Cabeçalho
+            widget: object
+            fields:
+              - { name: eyebrow, label: Linha pequena, widget: string }
+              - { name: titulo, label: Título, widget: string }
+              - { name: lede, label: Texto de apresentação, widget: text }
+          - { name: foto, label: Foto, widget: image }
+          - { name: foto_alt, label: Descrição da foto (acessibilidade), widget: string }
+          - {
+              name: credenciais,
+              label: Credenciais,
+              widget: list,
+              field: { name: texto, label: Credencial, widget: string },
+            }
+          - name: blocos
+            label: Blocos de texto
+            widget: list
+            fields:
+              - { name: titulo, label: Título do bloco, widget: string }
+              - { name: paragrafos, label: Parágrafos, widget: list, field: { name: texto, label: Parágrafo, widget: text } }
+          - name: perfil
+            label: Seção "Perfil profissional"
+            widget: object
+            fields:
+              - { name: mostrar, label: Exibir esta seção, widget: boolean, default: true }
+              - { name: eyebrow, label: Linha pequena, widget: string }
+              - { name: titulo, label: Frase de destaque, widget: text }
+              - { name: paragrafos, label: Parágrafos, widget: list, field: { name: texto, label: Parágrafo, widget: text } }
+          - name: cta
+            label: Chamada final
+            widget: object
+            fields:
+              - { name: titulo, label: Título, widget: string }
+              - { name: texto, label: Texto, widget: text }
+              - name: botao
+                label: Botão
+                widget: object
+                fields:
+                  - { name: texto, label: Texto, widget: string }
+                  - { name: url, label: Link, widget: string }
+
+      - name: areas
+        label: Página "Áreas de atuação"
+        file: src/_data/areas.json
+        fields:
+          - { name: titulo_pagina, label: Título na aba do navegador, widget: string }
+          - { name: descricao, label: Descrição para o Google, widget: text }
+          - name: cabecalho
+            label: Cabeçalho
+            widget: object
+            fields:
+              - { name: eyebrow, label: Linha pequena, widget: string }
+              - { name: titulo, label: Título, widget: string }
+              - { name: lede, label: Texto de apresentação, widget: text }
+          - name: cards
+            label: Cards-resumo
+            widget: list
+            fields:
+              - {
+                  name: icone,
+                  label: Ícone,
+                  widget: select,
+                  options: [predio, loja, documento, balanca, calendario, raio],
+                }
+              - { name: titulo, label: Título, widget: string }
+              - { name: texto, label: Descrição, widget: text }
+          - name: detalhe
+            label: Seção "Áreas em detalhe"
+            widget: object
+            fields:
+              - { name: mostrar, label: Exibir esta seção, widget: boolean, default: true }
+              - { name: eyebrow, label: Linha pequena, widget: string }
+              - { name: titulo, label: Título, widget: string }
+              - name: blocos
+                label: Áreas
+                widget: list
+                fields:
+                  - { name: titulo, label: Nome da área, widget: string }
+                  - { name: intro, label: Texto de abertura, widget: text }
+                  - { name: itens, label: Serviços, widget: list, field: { name: texto, label: Serviço, widget: text } }
+          - name: cta
+            label: Chamada final
+            widget: object
+            fields:
+              - { name: titulo, label: Título, widget: string }
+              - { name: texto, label: Texto, widget: text }
+              - name: botao
+                label: Botão
+                widget: object
+                fields:
+                  - { name: texto, label: Texto, widget: string }
+                  - { name: url, label: Link, widget: string }
+
+      - name: reforma
+        label: Página "Reforma tributária"
+        file: src/_data/reforma.json
+        fields:
+          - { name: titulo_pagina, label: Título na aba do navegador, widget: string }
+          - { name: descricao, label: Descrição para o Google, widget: text }
+          - name: cabecalho
+            label: Cabeçalho
+            widget: object
+            fields:
+              - { name: eyebrow, label: Linha pequena, widget: string }
+              - { name: titulo, label: Título, widget: string }
+              - { name: lede, label: Texto de apresentação, widget: text }
+          - name: cronograma
+            label: Cronograma
+            widget: object
+            fields:
+              - { name: eyebrow, label: Linha pequena, widget: string }
+              - { name: titulo, label: Título, widget: string }
+              - name: marcos
+                label: Marcos
+                widget: list
+                fields:
+                  - { name: ano, label: Ano, widget: string }
+                  - { name: texto, label: O que acontece, widget: text }
+          - name: pontos_de_atencao
+            label: Pontos de atenção
+            widget: object
+            fields:
+              - { name: eyebrow, label: Linha pequena, widget: string }
+              - { name: titulo, label: Título, widget: string }
+              - name: cards
+                label: Cards
+                widget: list
+                fields:
+                  - { name: titulo, label: Título, widget: string }
+                  - { name: texto, label: Descrição, widget: text }
+          - name: preparacao
+            label: Como se preparar
+            widget: object
+            fields:
+              - { name: eyebrow, label: Linha pequena, widget: string }
+              - { name: titulo, label: Título, widget: string }
+              - name: cards
+                label: Passos
+                widget: list
+                fields:
+                  - { name: titulo, label: Título, widget: string }
+                  - { name: texto, label: Descrição, widget: text }
+          - name: cta
+            label: Chamada final
+            widget: object
+            fields:
+              - { name: titulo, label: Título, widget: string }
+              - { name: texto, label: Texto, widget: text }
+              - name: botao
+                label: Botão
+                widget: object
+                fields:
+                  - { name: texto, label: Texto, widget: string }
+                  - { name: url, label: Link, widget: string }
+
+      - name: contato
+        label: Página "Contato"
+        file: src/_data/contato.json
+        fields:
+          - { name: titulo_pagina, label: Título na aba do navegador, widget: string }
+          - { name: descricao, label: Descrição para o Google, widget: text }
+          - name: cabecalho
+            label: Cabeçalho
+            widget: object
+            fields:
+              - { name: eyebrow, label: Linha pequena, widget: string }
+              - { name: titulo, label: Título, widget: string }
+              - { name: lede, label: Texto de apresentação, widget: text }
+          - { name: mensagem_sucesso, label: Mensagem de envio concluído, widget: text }
+          - { name: mensagem_erro, label: Mensagem de falha no envio, widget: text }
+          - { name: atendimento, label: Forma de atendimento, widget: string }
+          - { name: botao_whatsapp, label: Texto do botão do WhatsApp, widget: string }
+          - name: formulario
+            label: Textos do formulário
+            widget: object
+            fields:
+              - { name: rotulo_tipo, label: "Rótulo: tipo de pessoa", widget: string }
+              - { name: opcao_vazia, label: "Texto da opção vazia", widget: string }
+              - name: opcoes_tipo
+                label: Opções
+                widget: list
+                fields:
+                  - { name: valor, label: Valor interno, widget: string }
+                  - { name: texto, label: Texto exibido, widget: string }
+              - { name: erro_tipo, label: "Erro: tipo não selecionado", widget: string }
+              - { name: rotulo_nome, label: "Rótulo: nome", widget: string }
+              - { name: erro_nome, label: "Erro: nome vazio", widget: string }
+              - { name: rotulo_email, label: "Rótulo: e-mail", widget: string }
+              - { name: erro_email, label: "Erro: e-mail inválido", widget: string }
+              - { name: rotulo_telefone, label: "Rótulo: telefone", widget: string }
+              - { name: rotulo_mensagem, label: "Rótulo: mensagem", widget: string }
+              - { name: placeholder_mensagem, label: "Texto de exemplo da mensagem", widget: string }
+              - { name: erro_mensagem, label: "Erro: mensagem vazia", widget: string }
+              - { name: botao_enviar, label: Texto do botão de enviar, widget: string }
+          - { name: aviso_privacidade_antes, label: "Aviso de privacidade: texto antes do link", widget: text }
+          - { name: aviso_privacidade_link, label: "Aviso de privacidade: texto do link", widget: string }
+          - { name: aviso_privacidade_depois, label: "Aviso de privacidade: texto depois do link", widget: string }
+
+      - name: blog_pagina
+        label: Página "Blog" (textos)
+        file: src/_data/blog.json
+        description: Só os textos fixos da página. Os artigos ficam em "Artigos do blog".
+        fields:
+          - { name: titulo_pagina, label: Título na aba do navegador, widget: string }
+          - { name: descricao, label: Descrição para o Google, widget: text }
+          - name: cabecalho
+            label: Cabeçalho
+            widget: object
+            fields:
+              - { name: eyebrow, label: Linha pequena, widget: string }
+              - { name: titulo, label: Título, widget: string }
+              - { name: lede, label: Texto de apresentação, widget: text }
+          - { name: texto_ler_artigo, label: Texto do link de cada artigo, widget: string }
+
+      - name: privacidade
+        label: Página "Política de privacidade"
+        file: src/_data/privacidade.json
+        fields:
+          - { name: titulo_pagina, label: Título na aba do navegador, widget: string }
+          - { name: descricao, label: Descrição para o Google, widget: text }
+          - name: cabecalho
+            label: Cabeçalho
+            widget: object
+            fields:
+              - { name: eyebrow, label: Linha pequena, widget: string }
+              - { name: titulo, label: Título, widget: string }
+          - {
+              name: aviso_inicial,
+              label: Aviso no topo,
+              widget: text,
+              required: false,
+              hint: Deixe vazio para remover o aviso de texto-modelo.,
+            }
+          - name: secoes
+            label: Seções
+            widget: list
+            fields:
+              - { name: titulo, label: Título, widget: string }
+              - { name: paragrafos, label: Parágrafos, widget: list, field: { name: texto, label: Parágrafo, widget: text } }
+
+  # ----------------------------------------------------------
+  # Artigos do blog
+  # ----------------------------------------------------------
+  - name: posts
+    label: Artigos do blog
+    label_singular: Artigo
+    folder: src/posts
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: yaml-frontmatter
+    summary: "{{date | date('DD/MM/YYYY')}} — {{title}}"
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: Título, widget: string }
+      - { name: date, label: Data, widget: datetime, format: YYYY-MM-DD, date_format: DD/MM/YYYY, time_format: false }
+      - {
+          name: excerpt,
+          label: Resumo,
+          widget: text,
+          hint: Aparece no card do artigo na home e na página do blog.,
+        }
+      - {
+          name: body,
+          label: Texto do artigo,
+          widget: markdown,
+          required: false,
+          hint: Ainda não é exibido no site — as páginas de artigo individuais não foram criadas.,
+        }

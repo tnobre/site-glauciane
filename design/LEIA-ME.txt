@@ -1,0 +1,8 @@
+Arquivos-fonte de design. NÃO são publicados no site.
+
+logo-original.png
+  Arte original da logomarca (1536x1024, com fundo transparente).
+  Dela saíram, por recorte e otimização:
+    - src/assets/img/logo-horizontal.png  (logo do cabeçalho)
+    - src/assets/img/logo-mark.png        (ícone da aba do navegador)
+  Guardada aqui para permitir gerar novos tamanhos no futuro.

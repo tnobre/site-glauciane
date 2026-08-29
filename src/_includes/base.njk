@@ -1,0 +1,82 @@
+{# ============================================================
+   Esqueleto de todas as páginas: <head>, cabeçalho, menu e
+   rodapé. Antes esse bloco estava copiado nos 7 arquivos HTML;
+   agora mudar o telefone ou um item do menu é mexer em um
+   lugar só (src/_data/site.json).
+   ============================================================ #}<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ titulo_pagina }}</title>
+  <meta name="description" content="{{ descricao }}" />
+  <link rel="icon" type="image/png" href="assets/img/logo-mark.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=Syne:wght@700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+{%- if site.analytics_token %}
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ site.analytics_token }}"}'></script>
+{%- endif %}
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav">
+      <a href="index.html" class="brand"><img src="assets/img/logo-horizontal.png" alt="{{ site.logo_alt }}" class="brand-logo" /></a>
+      <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <ul class="nav-links">
+        {%- for item in site.menu %}
+        {#- Compara pelo arquivo gerado, e não por page.url, porque o Eleventy
+            normaliza a URL de index.html para "/" — a home ficaria sem o
+            destaque de página atual no menu. #}
+        <li><a href="{{ item.url }}"{% if item.destaque %} class="nav-cta"{% endif %}{% if page.outputPath.endsWith("/" + item.url) %} aria-current="page"{% endif %}>{{ item.texto }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+{{ content | safe }}
+  </main>
+
+  {#- A página de privacidade usa um rodapé reduzido (`rodape_simples`):
+      sem as três colunas e com "Voltar ao início" no lugar do link para
+      ela mesma. Era assim no site original e foi mantido. #}
+  <footer class="site-footer">
+    <div class="container">
+      {%- if not rodape_simples %}
+      <div class="footer-grid">
+        <div>
+          <h4>{{ site.nome }}</h4>
+          <p style="max-width: 40ch;">{{ site.descricao_rodape }}</p>
+        </div>
+        <div>
+          <h4>Navegação</h4>
+          {%- for item in site.menu_rodape %}
+          <a href="{{ item.url }}">{{ item.texto }}</a>
+          {%- endfor %}
+        </div>
+        <div>
+          <h4>Contato</h4>
+          <a href="contato.html">Fale comigo</a>
+          <a href="tel:{{ site.telefone_link }}">{{ site.telefone_exibicao }}</a>
+          <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+        </div>
+      </div>
+      {%- endif %}
+      <div class="footer-bottom">
+        <span>{{ site.oab }} · &copy; <span id="year"></span> {{ site.nome }} Advocacia</span>
+        {%- if rodape_simples %}
+        <a href="index.html">Voltar ao início</a>
+        {%- else %}
+        <a href="privacidade.html">Política de privacidade</a>
+        {%- endif %}
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
