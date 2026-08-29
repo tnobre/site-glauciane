@@ -1,0 +1,12 @@
+# Dependências
+node_modules/
+
+# Build gerado pelo Eleventy
+_site/
+
+# IDE
+.idea/
+
+# Sistema
+Thumbs.db
+.DS_Store

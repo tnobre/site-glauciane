@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | Glauciane Nobre Advocacia Empresarial</title>
+  <meta name="description" content="Artigos sobre direito tributário e Reforma Tributária, atualizados regularmente." />
+  <link rel="icon" type="image/png" href="assets/img/logo-mark.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=Syne:wght@700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav">
+      <a href="index.html" class="brand"><img src="assets/img/logo-horizontal.png" alt="Glauciane Nobre — Advocacia Empresarial" class="brand-logo" /></a>
+      <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="areas-de-atuacao.html">Áreas de atuação</a></li>
+        <li><a href="reforma-tributaria.html">Reforma tributária</a></li>
+        <li><a href="blog.html" aria-current="page">Blog</a></li>
+        <li><a href="contato.html" class="nav-cta">Fale comigo</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-header">
+      <div class="container">
+        <span class="eyebrow">Blog</span>
+        <h1>Artigos e atualizações</h1>
+        <p class="lede">Conteúdo direto sobre direito tributário e os desdobramentos da Reforma Tributária.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid grid-3" id="blog-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Glauciane Nobre</h4>
+          <p style="max-width: 40ch;">Advocacia empresarial, com diferencial em Reforma Tributária, para empresas em transformação.</p>
+        </div>
+        <div>
+          <h4>Navegação</h4>
+          <a href="sobre.html">Sobre</a>
+          <a href="areas-de-atuacao.html">Áreas de atuação</a>
+          <a href="reforma-tributaria.html">Reforma tributária</a>
+          <a href="blog.html">Blog</a>
+        </div>
+        <div>
+          <h4>Contato</h4>
+          <a href="contato.html">Fale comigo</a>
+          <a href="tel:+5511986605625">+55 (11) 98660-5625</a>
+          <a href="mailto:leonel.glauciane@gmail.com">leonel.glauciane@gmail.com</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>OAB/SP nº 345.651 · &copy; <span id="year"></span> Glauciane Nobre Advocacia</span>
+        <a href="privacidade.html">Política de privacidade</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/blog-data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const el = document.getElementById("blog-list");
+      if (!el) return;
+      el.innerHTML = BLOG_POSTS.map(post => `
+        <article class="card post-card">
+          <span class="date">${new Date(post.date + "T00:00:00").toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" })}</span>
+          <h3>${post.title}</h3>
+          <p>${post.excerpt}</p>
+          <a class="read-more" href="#">Ler artigo →</a>
+        </article>
+      `).join("");
+    });
+  </script>
+</body>
+</html>
