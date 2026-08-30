@@ -1,5 +1,5 @@
 {
-  "titulo_pagina": "Sobre | Glauciane Nobre Advocacia Empresarial",
+  "titulo_pagina": "Sobre | Glauciane Leonel Nobre Advocacia Empresarial",
   "descricao": "Conheça a trajetória, formação e abordagem da advogada empresarial Glauciane.",
   "cabecalho": {
     "eyebrow": "Sobre",
@@ -7,7 +7,7 @@
     "lede": "Advogada empresarial, com mais de 15 anos de atuação em contratos, contencioso e estruturação de negócios — hoje também especializada nos impactos da Reforma Tributária."
   },
   "foto": "assets/img/glauciane-foto.png",
-  "foto_alt": "Glauciane Nobre, advogada empresarial",
+  "foto_alt": "Glauciane Leonel Nobre, advogada empresarial",
   "credenciais": [
     "OAB/SP nº 345.651",
     "Graduação em Direito — PUC-PR",
@@ -25,15 +25,9 @@
       ]
     },
     {
-      "titulo": "Como trabalho",
-      "paragrafos": [
-        "Prefiro atuação consultiva: entender o cenário completo do cliente antes de recomendar qualquer caminho. Isso significa reuniões de diagnóstico claras, sem jargão desnecessário, e planos de ação com prazos definidos."
-      ]
-    },
-    {
       "titulo": "Associações e certificações",
       "paragrafos": [
-        "Membro da ACC Brasil (Association of Corporate Counsel), comunidade dedicada à promoção da advocacia corporativa no país. Possui certificação em privacidade de dados e em gestão estratégica de departamentos jurídicos (Insper)."
+        "Possui certificação em gestão estratégica de departamentos jurídicos pelo Insper."
       ]
     }
   ],
