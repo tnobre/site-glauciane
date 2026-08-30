@@ -62,19 +62,42 @@ DIFERENCAS_ESPERADAS = {
 
 
 class ExtratorDeTexto(HTMLParser):
-    """Coleta o texto visível, ignorando script, style e comentários."""
+    """Coleta o texto visível, ignorando script, style e comentários.
+
+    Guarda duas visões do texto:
+
+    - `partes`: cada trecho separado e sem espaços nas pontas. Serve para
+      achar texto que sumiu ou apareceu.
+    - `corrido`: tudo emendado, preservando os espaços entre os trechos.
+      Serve para achar espaço perdido na emenda de um texto com um link no
+      meio — do tipo "conforme nossa<a>Política</a>", que na tela vira
+      "conforme nossaPolítica". A comparação por trechos não enxerga isso,
+      porque os dois lados têm os mesmos trechos.
+    """
 
     IGNORAR = {"script", "style", "head", "title", "meta", "link"}
+    # Elementos de bloco: a quebra entre eles já é um separador visual, então
+    # não interessa se havia espaço no HTML.
+    BLOCO = {
+        "p", "div", "section", "article", "h1", "h2", "h3", "h4", "h5", "h6",
+        "ul", "ol", "li", "header", "footer", "main", "nav", "form", "label",
+        "button", "option", "select", "textarea", "br", "tr", "td", "th",
+    }
 
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.pilha = []
         self.partes = []
+        self._corrido = []
 
     def handle_starttag(self, tag, attrs):
         self.pilha.append(tag)
+        if tag in self.BLOCO:
+            self._corrido.append("\n")
 
     def handle_endtag(self, tag):
+        if tag in self.BLOCO:
+            self._corrido.append("\n")
         if tag in self.pilha:
             while self.pilha and self.pilha.pop() != tag:
                 pass
@@ -82,9 +105,17 @@ class ExtratorDeTexto(HTMLParser):
     def handle_data(self, dados):
         if any(t in self.IGNORAR for t in self.pilha):
             return
+        self._corrido.append(dados)
         texto = dados.strip()
         if texto:
             self.partes.append(texto)
+
+    @property
+    def corrido(self):
+        # Cada linha vira um trecho contínuo, com espaços internos normalizados.
+        bruto = "".join(self._corrido)
+        linhas = (re.sub(r"[^\S\n]+", " ", l).strip() for l in bruto.split("\n"))
+        return [l for l in linhas if l]
 
 
 def texto_visivel(html):
@@ -92,6 +123,12 @@ def texto_visivel(html):
     p.feed(html)
     # normaliza espaços internos de cada trecho
     return [re.sub(r"\s+", " ", t) for t in p.partes]
+
+
+def texto_corrido(html):
+    p = ExtratorDeTexto()
+    p.feed(html)
+    return p.corrido
 
 
 def versao_original(caminho):
@@ -141,9 +178,23 @@ def main():
         sumiu = [t for t in set_antes - set_depois]
         surgiu = [t for t in set_depois - set_antes if t not in esperados]
 
-        if not sumiu and not surgiu:
+        # Segunda checagem: espaços perdidos na emenda com links.
+        corrido_antes = set(texto_corrido(versao_original(pagina)))
+        with open(f"_site/{pagina}", encoding="utf-8") as f:
+            corrido_depois = set(texto_corrido(f.read()))
+        emendas = [
+            l for l in corrido_antes - corrido_depois
+            if not any(l.startswith(e) or e in l for e in esperados)
+        ]
+
+        if not sumiu and not surgiu and not emendas:
             print(f"OK    {pagina}: {len(depois)} trechos de texto, identicos")
             continue
+
+        for l in emendas:
+            houve_regressao = True
+            print(f"DIFF  {pagina}: espaco perdido ao emendar texto e link")
+            print(f"        antes:  {l[:110]}")
 
         houve_regressao = True
         print(f"DIFF  {pagina}:")

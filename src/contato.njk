@@ -92,7 +92,10 @@ pagina: contato
             </a>
 
             <p style="margin-top: var(--space-3); font-size: var(--fs-caption); color: var(--color-ink-soft);">
-              {{ contato.aviso_privacidade_antes }}<a href="privacidade.html" style="color: var(--color-reform);">{{ contato.aviso_privacidade_link }}</a>{{ contato.aviso_privacidade_depois }}
+              {#- O espaco antes do link fica aqui, no template, e nao no texto:
+                  os campos do painel removem espacos no fim, entao um texto
+                  terminado em espaco perderia a separacao ao ser salvo. #}
+              {{ contato.aviso_privacidade_antes }} <a href="privacidade.html" style="color: var(--color-reform);">{{ contato.aviso_privacidade_link }}</a>{{ contato.aviso_privacidade_depois }}
             </p>
           </div>
         </div>
