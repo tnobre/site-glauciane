@@ -6,20 +6,56 @@
   "telefone_link": "+5511986605625",
   "whatsapp_url": "https://wa.me/5511986605625",
   "descricao_rodape": "Advocacia empresarial, com diferencial em Reforma Tributária, para empresas em transformação.",
-  "logo_alt": "Glauciane Nobre — Advocacia Empresarial",
+  "logo_alt": "Glauciane Leonel Nobre — Advocacia Empresarial",
   "analytics_token": "",
   "menu": [
-    { "texto": "Início", "url": "index.html" },
-    { "texto": "Sobre", "url": "sobre.html" },
-    { "texto": "Áreas de atuação", "url": "areas-de-atuacao.html" },
-    { "texto": "Reforma tributária", "url": "reforma-tributaria.html" },
-    { "texto": "Blog", "url": "blog.html" },
-    { "texto": "Fale comigo", "url": "contato.html", "destaque": true }
+    {
+      "texto": "Início",
+      "url": "index.html",
+      "destaque": false
+    },
+    {
+      "texto": "Sobre",
+      "url": "sobre.html",
+      "destaque": false
+    },
+    {
+      "texto": "Áreas de atuação",
+      "url": "areas-de-atuacao.html",
+      "destaque": false
+    },
+    {
+      "texto": "Reforma tributária",
+      "url": "reforma-tributaria.html",
+      "destaque": false
+    },
+    {
+      "texto": "Blog",
+      "url": "blog.html",
+      "destaque": false
+    },
+    {
+      "texto": "Fale comigo",
+      "url": "contato.html",
+      "destaque": true
+    }
   ],
   "menu_rodape": [
-    { "texto": "Sobre", "url": "sobre.html" },
-    { "texto": "Áreas de atuação", "url": "areas-de-atuacao.html" },
-    { "texto": "Reforma tributária", "url": "reforma-tributaria.html" },
-    { "texto": "Blog", "url": "blog.html" }
+    {
+      "texto": "Sobre",
+      "url": "sobre.html"
+    },
+    {
+      "texto": "Áreas de atuação",
+      "url": "areas-de-atuacao.html"
+    },
+    {
+      "texto": "Reforma tributária",
+      "url": "reforma-tributaria.html"
+    },
+    {
+      "texto": "Blog",
+      "url": "blog.html"
+    }
   ]
 }
